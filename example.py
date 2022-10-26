@@ -22,4 +22,3 @@ for i in your_combinations.permutations(2, True):
 # permutations without repetition
 for i in your_combinations.permutations(2):
     print(i)
-
