@@ -1,15 +1,16 @@
 class YourCombinations:
     def __init__(self, elements):
         self.elements = elements
+        self.count_elements = len(elements)
 
-    def powerSet(self, array):
-        size = 2 ** len(array)
+    def powerSet(self):
+        size = 2 ** self.count_elements
         
         for i in range(size):
             cur = []
-            for j in range(len(array)):
+            for j in range(self.count_elements):
                 if (i & (1 << j)) > 0:
-                    cur.append(array[j])
+                    cur.append(self.elements[j])
             yield cur
 
     def combinations(self, length, with_repetition = False, position = 0, elements = []):
