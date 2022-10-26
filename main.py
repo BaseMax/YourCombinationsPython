@@ -1,45 +1,25 @@
+from YourCombinations import YourCombinations
 
-class YourCombinations:
-    def __init__(self, elements):
-        self.elements = elements
+# create YourCombinations
+your_combinations = YourCombinations([1, 2, 3])
 
-    def powerSet(self, array):
-        size = 2 ** len(array)
-        
-        for i in range(size):
-            cur = []
-            for j in range(len(array)):
-                if (i & (1 << j)) > 0:
-                    cur.append(array[j])
-            yield cur
+# power set
+for i in your_combinations.powerSet([1, 2, 3]):
+    print(i)
 
-    def combinations(self, length, with_repetition = False, position = 0, elements = []):
-        size = len(self.elements)
-        
-        for i in range(position, size):
-            elements.append(self.elements[i])
+# combinations with repetition
+for i in your_combinations.combinations(2, True):
+    print(i)
 
-            if len(elements) == length:
-                yield elements
-            else:
-                yield from self.combinations(length, with_repetition, (i + 1) if with_repetition == False else i, elements)
-            
-            elements.pop()
+# combinations without repetition
+for i in your_combinations.combinations(2):
+    print(i)
 
-    def permutations(self, length, with_repetition = False, elements = [], keys = []):
-        for key, value in enumerate(self.elements):
-            if with_repetition == False:
-                if key in keys:
-                    continue
+# permutations with repetition
+for i in your_combinations.permutations(2, True):
+    print(i)
 
-            keys.append(key)
-            elements.append(value)
-            
-            if len(elements) == length:
-                yield elements
-            else:
-                yield from self.permutations(length, with_repetition, elements, keys)
-            
-            keys.pop()
-            elements.pop()
+# permutations without repetition
+for i in your_combinations.permutations(2):
+    print(i)
 
